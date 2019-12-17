@@ -1,0 +1,42 @@
+<form *ngIf="!authService.isAuth()" [formGroup]="form" (ngSubmit)="submit()" class="col-6 mx-auto">
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="login"
+            formControlName="login">
+        <div
+            *ngIf="form.get('login').touched && form.get('login').invalid"
+            class="validation">
+            <small *ngIf="form.get('login').errors.required">
+                Введите поле admin
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            formControlName="password">
+        <div
+            *ngIf="form.get('password').touched && form.get('password').invalid"
+            class="validation">
+            <small *ngIf="form.get('password').errors.required">
+                Введите поле admin
+            </small>
+        </div>    
+    </div>    
+    <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Log in</button>
+</form>
+
+<div *ngIf="authService.isAuth()" class="text-center">
+    <p class="text-center h3">You're now logged in</p>
+    <button type="button" 
+    class="btn btn-primary" 
+    (click)="authService.logout()">
+    <i class="fas fa-sign-out-alt"></i> Log Out</button>
+</div>

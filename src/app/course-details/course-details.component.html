@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-6 mx-auto">
+        <h5>{{course.title}}</h5>
+        <h6 class="mb-2 text-muted">
+            {{course.lessons.length}} lessons - {{course.lessons.length * 2}} hourse
+        </h6>
+        <p>{{course.description}}</p>
+        <ul>
+            <li *ngFor="let lesson of course.lessons">{{lesson}}</li>
+        </ul>
+        <button class="btn btn-primary" (click)="goBack()">
+            <i class="fas fa-arrow-circle-left"></i>
+        </button>   
+    </div>
+</div>

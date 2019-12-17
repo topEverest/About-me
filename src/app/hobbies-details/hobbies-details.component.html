@@ -1,0 +1,56 @@
+<div class="row bg-light">
+        <form *ngIf="book" [formGroup]="newBookForm" (ngSubmit)="onSave(newBookForm)" class="col-6 mx-auto">
+                <button class="btn btn-primary" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i>
+                </button> 
+                <div class="form-group">
+                        <label for="bookTitle"><b>Book title:</b></label>
+    
+                        <input type="text" id="bookTitle" formControlName="title"
+                         class="border-0 form-control bg-white" [readonly]="!editingAllowed">
+                        <span *ngIf="newBookForm.get('title').hasError('required') && newBookForm.get('title').touched" class="text-danger">Required field</span>
+                </div>
+    
+                <div class="form-group">
+                        <label for="bookAuthor"><b>Author:</b></label>
+    
+                        <input type="text" id="bookAuthor" formControlName="author"
+                         class="border-0 form-control bg-white" [readonly]="!editingAllowed">
+                        <span *ngIf="newBookForm.get('author').hasError('required') && newBookForm.get('author').touched" class="text-danger">Required field</span>
+    
+                </div>
+                
+                <div class="form-group">
+                        <label for="publicationDate"><b>Published:</b></label>
+    
+                        <input type="number" id="publicationDate" formControlName="year"
+                         class="border-0 form-control bg-white" [readonly]="!editingAllowed">
+                        <span *ngIf="newBookForm.get('year').hasError('required') && newBookForm.get('year').touched" class="text-danger">Required field</span>
+    
+                </div>
+                
+                
+                <div class="col-12 text-center my-2">
+                        <img [src]="book.cover" class="img-fluid w-50 h-45" *ngIf="!editingAllowed; else editImage">
+                        <ng-template #editImage>
+                            <input type="text" formControlName="cover" placeholder="Paste image URL here" class="form-control">
+                        </ng-template>
+                        <span *ngIf="newBookForm.get('cover').hasError('required') && newBookForm.get('cover').touched" class="text-danger">Required field</span>
+    
+                </div>
+    
+                <div class="form-group">
+                        <label for="description"><b>Description:</b></label>
+    
+                        <textarea cols="120" [readonly]="!editingAllowed" rows="20" class="border-0" formControlName="description"></textarea>
+            
+                </div>
+                
+                <div class="btn-group d-flex justify-content-center mx-auto" role="group">
+                        <button  type="button" class="btn btn-warning" (click)="enableEdit()"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-danger mx-2" (click)="onDelete()"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button class="btn btn-primary" type="submit" *ngIf="newBookForm.dirty" [disabled]="newBookForm.invalid"><i class="far fa-save"></i> Save changes</button>
+                </div>
+                
+        </form>
+    </div>
+    

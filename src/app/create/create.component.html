@@ -1,0 +1,55 @@
+
+<div class="row bg-light">
+       
+        <form [formGroup]="newBookForm" (ngSubmit)="onAdd(newBookForm)" class="col-6 mx-auto">
+                <button type="button" class="btn btn-primary"><i class="fas fa-arrow-circle-left" (click)="goBack()"></i></button>
+                <div class="form-group">
+                        <label for="bookTitle"><b>Book title:</b></label>
+    
+                        <input type="text" id="bookTitle" formControlName="title"
+                         class="border-0 form-control bg-white" >
+                        <span *ngIf="newBookForm.get('title').errors?.required && newBookForm.get('title').touched" class="text-danger">Required field</span>
+                </div>
+    
+                <div class="form-group">
+                        <label for="bookAuthor"><b>Author:</b></label>
+    
+                        <input type="text" id="bookAuthor" formControlName="author"
+                         class="border-0 form-control bg-white">
+                        <span *ngIf="newBookForm.get('author').hasError('required') && newBookForm.get('author').touched" class="text-danger">Required field</span>
+    
+                </div>
+                
+                <div class="form-group">
+                        <label for="publicationDate"><b>Published:</b></label>
+    
+                        <input type="number" id="publicationDate" formControlName="year"
+                         class="border-0 form-control bg-white">
+                        <span *ngIf="newBookForm.get('year').hasError('required') && newBookForm.get('year').touched" class="text-danger">Required field</span>
+    
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="cover"><b>Cover Image:</b></label>
+                        
+                            <input type="text"  id="cover" formControlName="cover" placeholder="Paste image URL here" class="form-control">
+                       
+                        <span *ngIf="newBookForm.get('cover').hasError('required') && newBookForm.get('cover').touched" class="text-danger">Required field</span>
+    
+                </div>
+    
+                <div class="form-group">
+                        <label for="description"><b>Description:</b></label>
+    
+                        <textarea cols="120" rows="20" class="border-0" formControlName="description"></textarea>
+            
+                </div>
+                
+                
+                        <button class="btn btn-primary" type="submit" [disabled]="newBookForm.invalid"><i class="fas fa-book-open"></i> Add new</button>
+                
+                
+        </form>
+    </div>
+    
